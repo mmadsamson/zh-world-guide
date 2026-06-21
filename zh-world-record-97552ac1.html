@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开云 · 信息卡片页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f9f8f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #222;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #1c1e24 0%, #2a2d38 100%);
+      color: #eaeaea;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(217, 180, 112, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 350;
+      letter-spacing: 1px;
+      color: #f3edd8;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 620px;
+      margin: 0 auto;
+      color: #bcb8a8;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .accent-line {
+      width: 60px;
+      height: 2px;
+      background: #d9b470;
+      margin: 1.5rem auto 0;
+    }
+
+    /* 浅色正文区 卡片布局 */
+    .cards-section {
+      max-width: 1100px;
+      margin: -1.5rem auto 0;
+      padding: 0 1.8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2rem 1.8rem 2.2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 460;
+      margin-bottom: 0.75rem;
+      color: #2c2f3a;
+      display: flex;
+      align-items: center;
+    }
+
+    .card h2 span {
+      background: #eae4d7;
+      color: #2c2f3a;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.1rem 0.6rem;
+      border-radius: 12px;
+      margin-left: 0.75rem;
+      letter-spacing: 0.3px;
+    }
+
+    .card p {
+      color: #3e4049;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card .label {
+      display: inline-block;
+      background: #f0ede6;
+      color: #4d4f59;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+    }
+
+    /* 强调色链接 */
+    a {
+      color: #b8863b;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #8f6d2b;
+      border-bottom: 1px solid #b8863b;
+    }
+
+    .natural-link-text {
+      max-width: 820px;
+      margin: 1.2rem auto 3.5rem;
+      padding: 0 2rem;
+      font-size: 1.05rem;
+      color: #3c3e45;
+      background: transparent;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .natural-link-text a {
+      font-weight: 460;
+    }
+
+    .tagline {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      color: #6b6d78;
+      border-top: 1px solid #e2ddd2;
+      padding-top: 1.4rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .faq-mini {
+      background: #f4f1ea;
+      border-radius: 14px;
+      padding: 1.6rem 2rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      width: 90%;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #2f313b;
+      font-size: 1.05rem;
+      padding: 0.4rem 0;
+    }
+
+    .faq-mini p {
+      margin-top: 0.5rem;
+      color: #474a54;
+      font-size: 0.98rem;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 720px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .cards-section {
+        grid-template-columns: 1fr;
+        gap: 1.3rem;
+        padding: 0 1.2rem 2.5rem;
+        margin-top: -0.8rem;
+      }
+
+      .card {
+        padding: 1.6rem 1.3rem;
+      }
+
+      .natural-link-text {
+        padding: 0 1.2rem;
+      }
+
+      .faq-mini {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero {
+        padding: 3rem 1rem 2.8rem;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.8rem 1rem 2rem;
+      color: #7b7d86;
+      font-size: 0.88rem;
+      border-top: 1px solid #e7e2d9;
+      background: #faf9f5;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1>开云 · 信息入口</h1>
+    <p>快速识别网站用途，聚焦内容本身</p>
+    <div class="accent-line"></div>
+  </section>
+
+  <!-- 卡片区域：用途、适合人群、主视觉描述等 -->
+  <div class="cards-section">
+
+    <article class="card">
+      <h2>主视觉 · 简洁风格 <span>定位</span></h2>
+      <p>深色背景搭配柔和高光，强调色用于链接和点缀。整体视觉干净，避免过度装饰，让信息层级一目了然。</p>
+      <p class="label">视觉基调 · 中性偏暖</p>
+    </article>
+
+    <article class="card">
+      <h2>典型用途 <span>场景</span></h2>
+      <p>适合作为品牌或产品介绍页、个人导航页、文档索引页。通过信息卡片快速传递核心用途，不依赖复杂的动画与密集文案。</p>
+      <p>也可以作为一系列连接点的起始页，引导有明确需求的用户。</p>
+    </article>
+
+    <article class="card">
+      <h2>适合人群 <span>受众</span></h2>
+      <p>希望快速了解网站定位的访客，或需要判断资源是否匹配的浏览者。也适合想要一个克制、不打扰的页面作为入口的人。</p>
+      <p>不需要花哨交互，更看重内容结构和加载速度。</p>
+    </article>
+
+    <article class="card">
+      <h2>内容节奏 <span>叙述</span></h2>
+      <p>从主视觉到卡片再到自然段落，信息密度逐渐增加，但始终保留留白。每个版块只讲一件事，不堆砌。</p>
+      <p>如果你在寻找一个没有诱导、不浮夸的页面，这里恰好是。</p>
+    </article>
+
+  </div>
+
+  <!-- 自然链接段落：a 标签嵌入句子，可见文本严格等于「开云」 -->
+  <div class="natural-link-text">
+    <p>
+      如果你在找一站式的信息汇集，可以了解一下 <a href="https://zh-world-kai-yun.com">开云</a>。
+      这个页面希望用最直接的方式告诉你：这里有什么，适合谁，以及如何开始。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要风格段落 -->
+  <details class="faq-mini">
+    <summary>常见疑问 · 简要</summary>
+    <p><strong>这个页面是做什么的？</strong> —— 一个说明性质的卡片页，用于呈现网站用途和视觉风格，不含复杂功能。</p>
+    <p><strong>链接指向哪里？</strong> —— 所有链接均指向 <a href="https://zh-world-kai-yun.com">开云</a>（同一站点）。</p>
+    <p><strong>为什么用深色头图？</strong> —— 为了在视觉上区分信息层级，同时让浅色正文区更突出，阅读更舒适。</p>
+  </details>
+
+  <div class="tagline">
+    · 内容真实克制 · 无诱导表述 ·
+  </div>
+
+  <footer>
+    卡片式介绍页 · 开云
+  </footer>
+
+</body>
+</html>
