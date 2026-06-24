@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 日常游戏信息参考</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      background-color: #fafafb;
+      color: #1f2023;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* hero */
+    .hero {
+      padding: 3.5rem 0 2.8rem;
+      border-bottom: 1px solid #eaecef;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 550;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin-bottom: 1.1rem;
+      color: #080b12;
+    }
+
+    .hero .sub {
+      font-size: 1.15rem;
+      color: #475569;
+      max-width: 580px;
+      margin-top: 0.3rem;
+    }
+
+    .hero .sub a {
+      color: #1f3a5f;
+      text-decoration: none;
+      border-bottom: 1.5px solid #b7c7db;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero .sub a:hover {
+      color: #0a1c31;
+      border-bottom-color: #1f3a5f;
+    }
+
+    /* 通用章节 */
+    section {
+      padding: 2.4rem 0 1.8rem;
+      border-bottom: 1px solid #eaecf0;
+    }
+
+    section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 530;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      color: #181c24;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.5rem;
+      background: #2d4b73;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    p, .text-block {
+      margin-bottom: 1rem;
+      color: #2b2f38;
+    }
+
+    .text-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .text-block a {
+      color: #1f3a5f;
+      text-decoration: none;
+      border-bottom: 1px solid #cdd6e6;
+      transition: border-bottom-color 0.2s;
+    }
+
+    .text-block a:hover {
+      border-bottom-color: #1f3a5f;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 1.3rem 1.4rem;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.25s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 18px rgba(0,0,0,0.03), 0 0 0 1px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      font-weight: 540;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #12151e;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #434956;
+      margin-bottom: 0;
+    }
+
+    .faq-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px dashed #e2e5ea;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 520;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #161a23;
+    }
+
+    .faq-a {
+      font-size: 0.95rem;
+      color: #4b505c;
+      padding-left: 0.2rem;
+    }
+
+    .faq-a a {
+      color: #1f3a5f;
+      border-bottom: 1px solid #cdd6e6;
+      text-decoration: none;
+    }
+
+    .faq-a a:hover {
+      border-bottom-color: #1f3a5f;
+    }
+
+    .bottom-links {
+      padding: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    .bottom-links p {
+      font-size: 0.92rem;
+      color: #5a606e;
+      margin-bottom: 0.5rem;
+    }
+
+    .bottom-links a {
+      color: #1f3a5f;
+      text-decoration: none;
+      border-bottom: 1px solid #c7d2e0;
+      transition: border-bottom-color 0.2s;
+    }
+
+    .bottom-links a:hover {
+      border-bottom-color: #1f3a5f;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #e4e7ed;
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    /* 窄屏适配 */
+    @media (max-width: 620px) {
+      .page {
+        padding: 1.6rem 1.2rem 2.5rem;
+      }
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .section-title {
+        font-size: 1.35rem;
+      }
+      .card {
+        padding: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 区 -->
+  <header class="hero">
+    <h1>查查对照，随手翻阅</h1>
+    <div class="sub">
+      游戏信息、版本说明、术语对照 · 日常参考站点 <a href="https://mobile-china-igame.com">爱游戏</a> 收录来自多方的公开资料，方便你在闲暇或需要快速核实时打开看看。
+    </div>
+  </header>
+
+  <!-- 优势区：卡片式 -->
+  <section>
+    <div class="section-title">为什么日常会用到它</div>
+    <div class="grid-2col">
+      <div class="card">
+        <h3>条目清晰</h3>
+        <p>无论是游戏名称、版本号，还是常用英文缩写，分类整理后能减少来回切换页面翻找的时间。</p>
+      </div>
+      <div class="card">
+        <h3>轻量页面</h3>
+        <p>没有冗余的弹窗或自动播放，加载快，适合移动端碎片化场景——等车、排队、睡前随手翻看。</p>
+      </div>
+      <div class="card">
+        <h3>可延伸阅读</h3>
+        <p>部分条目附带简短说明或出处链接，能帮你快速了解背景，不至于读完仍一头雾水。</p>
+      </div>
+      <div class="card">
+        <h3>无诱导内容</h3>
+        <p>站内不设置强提醒、不要求注册或下载，保持信息本身的克制呈现，你可以随时离开，没有负担。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 说明区：使用场景 + 细节 -->
+  <section>
+    <div class="section-title">日常查询与对照</div>
+    <div class="text-block">
+      拿游戏更新来说，版本号后面跟着的一串字母和数字，有时候是编译标签，有时候是渠道标识。在 <a href="https://mobile-china-igame.com">爱游戏</a> 的公开列表里，通常会把版本备注和日期一并列出，方便横向对比。同样，一些游戏内封面的英文术语，这里也做了中文对照说明。
+    </div>
+    <div class="text-block">
+      如果你正在查阅某个系列作品的时间线，或者想确认某个角色名的官方译法，翻一翻索引或许就能找到。保持一个随手可查的页面，比临时去论坛发帖要安静得多。
+    </div>
+    <div class="text-block" style="margin-top: 0.8rem;">
+      另外，有些解释来自官方文档或玩家社群整理的翻译对照表，可以作为延伸阅读的起点，但正式决策还请以原版或官方渠道为准。
+    </div>
+  </section>
+
+  <!-- FAQ 摘要 -->
+  <section>
+    <div class="section-title">常遇见的问题</div>
+    <div class="faq-item">
+      <div class="faq-q">Q：这里的资料是最新的吗？</div>
+      <div class="faq-a">页面内容会跟随公开信息更新，但人工维护可能存在延迟。重要数据建议再核对一遍官方来源。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q：某个游戏或术语找不到怎么办？</div>
+      <div class="faq-a">你可以试着在站内搜索，或者去社区板块留言，有时其他读者会补充条目。也欢迎通过页面底部的联系方式提交建议。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q：移动端浏览体验如何？</div>
+      <div class="faq-a">页面针对手机和平板做了窄屏适配，字体和间距在 320px 宽度以上都能正常阅读，无需缩放。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q：这些资料可以转载吗？</div>
+      <div class="faq-a">大部分条目属于公开整理内容，转载时建议注明出处 <a href="https://mobile-china-igame.com">爱游戏</a>，并保持文本原意。</div>
+    </div>
+  </section>
+
+  <!-- 底部链接 -->
+  <div class="bottom-links">
+    <p>信息参考站点 · 无广告 · 无跟踪</p>
+    <hr>
+    <p>了解更多或反馈建议 → <a href="https://mobile-china-igame.com">爱游戏</a></p>
+  </div>
+
+</div>
+</body>
+</html>
